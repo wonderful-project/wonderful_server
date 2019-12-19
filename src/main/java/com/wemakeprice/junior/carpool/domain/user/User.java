@@ -1,5 +1,6 @@
 package com.wemakeprice.junior.carpool.domain.user;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -23,4 +24,17 @@ public class User {
     @Enumerated(EnumType.STRING)
     @Column(nullable = true)
     private Role role;
+
+    @Builder
+    public User(String email, String password, Role role) {
+        this.email = email;
+        this.password = password;
+        this.role = role;
+    }
+
+    public void update(String email, String password, Role role) {
+        this.email = email;
+        this.password = password;
+        this.role = role;
+    }
 }
