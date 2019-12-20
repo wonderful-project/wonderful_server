@@ -2,11 +2,13 @@ package com.wemakeprice.junior.carpool.web.dto;
 
 import com.wemakeprice.junior.carpool.domain.user.Role;
 import com.wemakeprice.junior.carpool.domain.user.User;
+import lombok.Getter;
 
 import javax.persistence.Column;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 
+@Getter
 public class UserResponseDto {
 
     private Long id;

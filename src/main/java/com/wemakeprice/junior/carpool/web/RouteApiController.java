@@ -9,7 +9,7 @@ import java.util.List;
 
 @RequiredArgsConstructor
 @RestController
-public class RouteController {
+public class RouteApiController {
 
 //    @GetMapping("/api/v1/users")
 //    public List<UserResponseDto> getUser() {
