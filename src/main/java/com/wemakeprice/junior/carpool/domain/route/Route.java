@@ -1,5 +1,6 @@
 package com.wemakeprice.junior.carpool.domain.route;
 
+import com.wemakeprice.junior.carpool.domain.user.User;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,6 +16,10 @@ public class Route {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    private User user;
 
     @Column(nullable = false)
     private String origin;
@@ -36,5 +41,9 @@ public class Route {
         this.origin = origin;
         this.destination = destination;
         this.timeOfDeparture = timeOfDeparture;
+    }
+
+    public void updateUser(User user) {
+        this.user = user;
     }
 }
