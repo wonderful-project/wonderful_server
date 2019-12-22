@@ -22,24 +22,48 @@ public class Route {
     private User user;
 
     @Column(nullable = false)
-    private String origin;
+    private String originAddress;
 
     @Column(nullable = false)
-    private String destination;
+    private Double originX;
+
+    @Column(nullable = false)
+    private Double originY;
+
+    @Column(nullable = false)
+    private String destinationAddress;
+
+    @Column(nullable = false)
+    private Double destinationX;
+
+    @Column(nullable = false)
+    private Double destinationY;
 
     @Column(nullable = false)
     private LocalDateTime timeOfDeparture;
 
     @Builder
-    public Route(String origin, String destination, LocalDateTime timeOfDeparture) {
-        this.origin = origin;
-        this.destination = destination;
+    public Route(String originAddress, Double originX, Double originY,
+                 String destinationAddress, Double destinationX, Double destinationY,
+                 LocalDateTime timeOfDeparture) {
+        this.originAddress = originAddress;
+        this.originX = originX;
+        this.originY = originY;
+        this.destinationAddress = destinationAddress;
+        this.destinationX = destinationX;
+        this.destinationY = destinationY;
         this.timeOfDeparture = timeOfDeparture;
     }
 
-    public void update(String origin, String destination, LocalDateTime timeOfDeparture) {
-        this.origin = origin;
-        this.destination = destination;
+    public void update(String originAddress, Double originX, Double originY,
+                       String destinationAddress, Double destinationX, Double destinationY,
+                       LocalDateTime timeOfDeparture) {
+        this.originAddress = originAddress;
+        this.originX = originX;
+        this.originY = originY;
+        this.destinationAddress = destinationAddress;
+        this.destinationX = destinationX;
+        this.destinationY = destinationY;
         this.timeOfDeparture = timeOfDeparture;
     }
 
