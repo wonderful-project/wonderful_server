@@ -1,53 +1,60 @@
 package com.wemakeprice.junior.carpool.web;
 
-import com.wemakeprice.junior.carpool.domain.route.Route;
-import com.wemakeprice.junior.carpool.domain.route.RouteRepository;
-import com.wemakeprice.junior.carpool.domain.user.User;
-import com.wemakeprice.junior.carpool.domain.user.UserRepository;
+import com.wemakeprice.junior.carpool.service.route.RouteService;
 import com.wemakeprice.junior.carpool.web.dto.RouteResponseDto;
-import com.wemakeprice.junior.carpool.web.dto.UserResponseDto;
+import com.wemakeprice.junior.carpool.web.dto.RouteSaveRequestDto;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 @RequiredArgsConstructor
 @RestController
 public class RouteApiController {
 
-    private final RouteRepository routeRepository;
-    private final UserRepository userRepository;
+    private final RouteService routeService;
 
-    @PostMapping
-    public Long save() {
-        return null;
+    @PostMapping("/api/v1/route")
+    public Long save(@RequestBody RouteSaveRequestDto routeSaveRequestDto) {
+        return routeService.save(routeSaveRequestDto);
     }
 
-    @GetMapping("/api/v1/route")
-    public RouteResponseDto getRoute() {
-        //given
-        Route route = Route.builder()
-                .originAddress("a")
-                .destinationAddress("b")
-                .originX(1.0)
-                .originY(1.0)
-                .destinationX(1.0)
-                .destinationY(1.0)
-                .timeOfDeparture(LocalDateTime.now())
-                .build();
-        User user = userRepository.findById(1L).get();
-        route.updateUser(user);
-        Long id = routeRepository.save(route).getId();
-
-        return new RouteResponseDto(route);
+    @PutMapping("/api/v1/route/{id}")
+    public Long update(@PathVariable Long id, @RequestBody RouteSaveRequestDto routeSaveRequestDto) {
+        return routeService.update(id, routeSaveRequestDto);
     }
 
-//    @GetMapping("/api/v1/users")
-//    public List<UserResponseDto> getUser() {
-//        return ;
-//    }
+    @GetMapping("/api/v1/route/{id}")
+    public RouteResponseDto getRoute(@PathVariable Long id) {
+        return routeService.findById(id);
+    }
+
+    @DeleteMapping("/api/v1/route/{id}")
+    public void delete(@PathVariable Long id) {
+        routeService.delete(id);
+    }
+
+    @GetMapping("/api/v1/route/add-dummies")
+    public void addDummies() {
+
+        double centerY = 37.52319515;
+        double centerX = 126.9811055;
+        for (int i = 1; i < 100; i++) {
+            double randomA = ((Math.random() * 10) / 3) / 100;
+            double randomB = ((Math.random() * 10) / 3) / 100;
+            double randomC = ((Math.random() * 10) / 3) / 100;
+            double randomD = ((Math.random() * 10) / 3) / 100;
+            RouteSaveRequestDto dto = RouteSaveRequestDto.builder()
+                    .userId((long) i)
+                    .originAddress("")
+                    .originX(centerX + randomA)
+                    .originY(centerY + randomB)
+                    .destinationAddress("")
+                    .destinationX(centerX + randomC)
+                    .destinationY(centerY + randomD)
+                    .timeOfDeparture(LocalDateTime.now()).build();
+
+            save(dto);
+        }
+    }
 }
