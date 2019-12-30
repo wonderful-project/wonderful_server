@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 @RequiredArgsConstructor
+@CrossOrigin(origins = "*")
 @RestController
 public class UserApiController {
 
