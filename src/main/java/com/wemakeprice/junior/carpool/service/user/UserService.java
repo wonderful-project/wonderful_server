@@ -38,6 +38,14 @@ public class UserService {
     }
 
     @Transactional
+    public List<UserResponseDto> getUsers() {
+        return userRepository.findAll()
+                .stream()
+                .map(user -> new UserResponseDto(user))
+                .collect(Collectors.toList());
+    }
+
+    @Transactional
     public void delete(Long id) {
         userRepository.deleteById(id);
     }

@@ -41,16 +41,22 @@ class RouteApiControllerTest {
     @Test
     void 루트등록() {
         //given
-        Route route = Route.builder()
-                        .origin("a")
-                        .destination("b")
-                        .timeOfDeparture(LocalDateTime.now())
-                        .build();
-        Long id = routeRepository.save(route).getId();
+//        Route route = Route.builder()
+//                        .origin("a")
+//                        .destination("b")
+//                        .timeOfDeparture(LocalDateTime.now())
+//                        .build();
+//        Long id = routeRepository.save(route).getId();
+//        Route route = Route.builder()
+//                        .origin("a")
+//                        .destination("b")
+//                        .timeOfDeparture(LocalDateTime.now())
+//                        .build();
+//        Long id = routeRepository.save(route).getId();
 
         //when
-        Route load = routeRepository.findById(id).get();
-        System.out.println(load.getUser().getId());
+//        Route load = routeRepository.findById(id).get();
+//        System.out.println(load.getUser().getId());
 
         //then
     }

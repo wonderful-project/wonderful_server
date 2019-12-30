@@ -7,6 +7,8 @@ import com.wemakeprice.junior.carpool.web.dto.UserSaveRequestDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RequiredArgsConstructor
 @CrossOrigin(origins = "*")
 @RestController
@@ -27,6 +29,11 @@ public class UserApiController {
     @GetMapping("/api/v1/user/{id}")
     public UserResponseDto getUser(@PathVariable Long id) {
         return userService.getUser(id);
+    }
+
+    @GetMapping("/api/v1/user")
+    public List<UserResponseDto> getUsers() {
+        return userService.getUsers();
     }
 
     @DeleteMapping("/api/v1/user/{id}")

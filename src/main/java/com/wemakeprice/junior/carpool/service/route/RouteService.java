@@ -10,6 +10,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @RequiredArgsConstructor
 @Service
 public class RouteService {
@@ -41,6 +44,14 @@ public class RouteService {
         Route route = routeRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("해당 사용자가 없습니다. id=" + id));
         return new RouteResponseDto(route);
+    }
+
+    @Transactional
+    public List<RouteResponseDto> findAll() {
+        return routeRepository.findAll()
+                .stream()
+                .map(route -> new RouteResponseDto(route))
+                .collect(Collectors.toList());
     }
 
     @Transactional

@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @RequiredArgsConstructor
 @CrossOrigin(origins = "*")
@@ -33,6 +34,11 @@ public class RouteApiController {
     @DeleteMapping("/api/v1/route/{id}")
     public void delete(@PathVariable Long id) {
         routeService.delete(id);
+    }
+
+    @GetMapping("/api/v1/route")
+    public List<RouteResponseDto> getRoutes() {
+        return routeService.findAll();
     }
 
     @GetMapping("/api/v1/route/add-dummies")
