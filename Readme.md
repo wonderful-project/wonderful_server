@@ -29,6 +29,17 @@
     - 회원탈퇴 : (DELETE) http://localhost:8080/api/v1/user/{id}
 - 경로
     - 경로입력 : (POST) http://localhost:8080/api/v1/route
+        - 요청예시  
+        {  
+        "userId" : "1",  
+        "originAddress" : "서울특별시 관악구 다듬길 13-4",  
+        "originX" : "127.341367",  
+        "originY" : "36.445634",  
+        "destinationAddress" : "서울특별시 강남구 구름길 11-2",  
+        "destinationX" : "127.123456",  
+        "destinationY" : "36.321543",  
+        "timeOfDeparture" : "2020-01-01T09:00:00"   
+        }
     - 경로전체목록 : (GET) http://localhost:8080/api/v1/route
     - 경로정보보기 : (GET) http://localhost:8080/api/v1/route/{id}
     - 경로정보수정 : (PUT) http://localhost:8080/api/v1/route/{id}
