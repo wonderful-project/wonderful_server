@@ -1,5 +1,6 @@
 package com.wemakeprice.junior.carpool.web.dto;
 
+import com.wemakeprice.junior.carpool.domain.route.Location;
 import com.wemakeprice.junior.carpool.domain.route.Route;
 import com.wemakeprice.junior.carpool.domain.user.User;
 import lombok.Builder;
@@ -12,15 +13,15 @@ public class RouteResponseDto {
 
     private Long id;
     private Long userId;
-    private String origin;
-    private String destination;
+    private Location origin;
+    private Location destination;
     private LocalDateTime timeOfDeparture;
 
     public RouteResponseDto(Route entity) {
         this.id = entity.getId();
         this.userId = entity.getUser().getId();
-        this.origin = entity.getOriginAddress();
-        this.destination = entity.getDestinationAddress();
+        this.origin = entity.getOrigin();
+        this.destination = entity.getDestination();
         this.timeOfDeparture = entity.getTimeOfDeparture();
     }
 }

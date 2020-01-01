@@ -33,8 +33,7 @@ public class RouteService {
     public Long update(Long id, RouteSaveRequestDto routeSaveRequestDto) {
         Route route = routeRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("해당 사용자가 없습니다. id=" + id));
-        route.update(routeSaveRequestDto.getOriginAddress(), routeSaveRequestDto.getOriginX(), routeSaveRequestDto.getOriginY(),
-                routeSaveRequestDto.getDestinationAddress(), routeSaveRequestDto.getDestinationX(), routeSaveRequestDto.getDestinationY(),
+        route.update(routeSaveRequestDto.getOrigin(), routeSaveRequestDto.getDestination(),
                 routeSaveRequestDto.getTimeOfDeparture());
         return id;
     }

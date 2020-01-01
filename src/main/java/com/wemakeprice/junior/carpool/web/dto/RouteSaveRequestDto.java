@@ -1,5 +1,6 @@
 package com.wemakeprice.junior.carpool.web.dto;
 
+import com.wemakeprice.junior.carpool.domain.route.Location;
 import com.wemakeprice.junior.carpool.domain.route.Route;
 import lombok.Builder;
 import lombok.Getter;
@@ -19,6 +20,22 @@ public class RouteSaveRequestDto {
     private Double destinationY;
     private LocalDateTime timeOfDeparture;
 
+    public Location getOrigin() {
+        return Location.builder()
+                .address(originAddress)
+                .x(originX)
+                .y(originY)
+                .build();
+    }
+
+    public Location getDestination() {
+        return Location.builder()
+                .address(destinationAddress)
+                .x(destinationX)
+                .y(destinationY)
+                .build();
+    }
+
     @Builder
     public RouteSaveRequestDto(Long userId, String originAddress, Double originX, Double originY,
                                String destinationAddress, Double destinationX, Double destinationY,
@@ -35,12 +52,8 @@ public class RouteSaveRequestDto {
 
     public Route toEntity() {
         return Route.builder()
-                .originAddress(originAddress)
-                .originX(originX)
-                .originY(originY)
-                .destinationAddress(destinationAddress)
-                .destinationX(destinationX)
-                .destinationY(destinationY)
+                .origin(getOrigin())
+                .destination(getDestination())
                 .timeOfDeparture(timeOfDeparture)
                 .build();
     }

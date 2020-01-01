@@ -21,49 +21,35 @@ public class Route {
     @JoinColumn(name = "user_id")
     private User user;
 
-    @Column(nullable = false)
-    private String originAddress;
+    @Embedded
+    @AttributeOverrides({
+            @AttributeOverride(name = "address", column = @Column(name="ORIGIN_ADDRESS")),
+            @AttributeOverride(name = "x", column = @Column(name="ORIGIN_X")),
+            @AttributeOverride(name = "y", column = @Column(name="ORIGIN_Y"))
+    })
+    private Location origin;
 
-    @Column(nullable = false)
-    private Double originX;
-
-    @Column(nullable = false)
-    private Double originY;
-
-    @Column(nullable = false)
-    private String destinationAddress;
-
-    @Column(nullable = false)
-    private Double destinationX;
-
-    @Column(nullable = false)
-    private Double destinationY;
+    @Embedded
+    @AttributeOverrides({
+            @AttributeOverride(name = "address", column = @Column(name="DESTINATION_ADDRESS")),
+            @AttributeOverride(name = "x", column = @Column(name="DESTINATION_X")),
+            @AttributeOverride(name = "y", column = @Column(name="DESTINATION_Y"))
+    })
+    private Location destination;
 
     @Column(nullable = false)
     private LocalDateTime timeOfDeparture;
 
     @Builder
-    public Route(String originAddress, Double originX, Double originY,
-                 String destinationAddress, Double destinationX, Double destinationY,
-                 LocalDateTime timeOfDeparture) {
-        this.originAddress = originAddress;
-        this.originX = originX;
-        this.originY = originY;
-        this.destinationAddress = destinationAddress;
-        this.destinationX = destinationX;
-        this.destinationY = destinationY;
+    public Route(Location origin, Location destination, LocalDateTime timeOfDeparture) {
+        this.origin = origin;
+        this.destination = destination;
         this.timeOfDeparture = timeOfDeparture;
     }
 
-    public void update(String originAddress, Double originX, Double originY,
-                       String destinationAddress, Double destinationX, Double destinationY,
-                       LocalDateTime timeOfDeparture) {
-        this.originAddress = originAddress;
-        this.originX = originX;
-        this.originY = originY;
-        this.destinationAddress = destinationAddress;
-        this.destinationX = destinationX;
-        this.destinationY = destinationY;
+    public void update(Location origin, Location destination, LocalDateTime timeOfDeparture) {
+        this.origin = origin;
+        this.destination = destination;
         this.timeOfDeparture = timeOfDeparture;
     }
 
