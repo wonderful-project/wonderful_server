@@ -1,9 +1,9 @@
 # WONDERPOOL(가칭)
 
 #### 서버 실행 방법
-- [실행파일 다운로드](https://github.com/wonderful-project/wonderful_server/raw/master/carpool.jar)
+- [실행파일 다운로드](https://github.com/wonderful-project/wonderful_server/raw/master/carpool-0.0.1-SNAPSHOT.jar)
 - 터미널에서 아래 명령어 입력 
-> java -jar carpool.jar
+> java -jar carpool-0.0.1-SNAPSHOT.jar
 
 ---
 
