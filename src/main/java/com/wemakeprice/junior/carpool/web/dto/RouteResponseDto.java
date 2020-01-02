@@ -13,15 +13,23 @@ public class RouteResponseDto {
 
     private Long id;
     private Long userId;
-    private Location origin;
-    private Location destination;
+    private String originAddress;
+    private Double originX;
+    private Double originY;
+    private String destinationAddress;
+    private Double destinationX;
+    private Double destinationY;
     private LocalDateTime timeOfDeparture;
 
     public RouteResponseDto(Route entity) {
         this.id = entity.getId();
         this.userId = entity.getUser().getId();
-        this.origin = entity.getOrigin();
-        this.destination = entity.getDestination();
+        this.originAddress = entity.getOrigin().getAddress();
+        this.originX = entity.getOrigin().getX();
+        this.originY = entity.getOrigin().getY();
+        this.destinationAddress = entity.getDestination().getAddress();
+        this.destinationX = entity.getDestination().getX();
+        this.destinationY = entity.getDestination().getY();
         this.timeOfDeparture = entity.getTimeOfDeparture();
     }
 }

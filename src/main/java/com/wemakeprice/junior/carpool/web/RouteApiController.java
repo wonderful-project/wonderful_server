@@ -46,17 +46,17 @@ public class RouteApiController {
 
         double centerY = 37.52319515;
         double centerX = 126.9811055;
-        for (int i = 1; i < 100; i++) {
+        for (int i = 1; i <= 100; i++) {
             double randomA = ((Math.random() * 10) / 3) / 100;
             double randomB = ((Math.random() * 10) / 3) / 100;
             double randomC = ((Math.random() * 10) / 3) / 100;
             double randomD = ((Math.random() * 10) / 3) / 100;
             RouteSaveRequestDto dto = RouteSaveRequestDto.builder()
                     .userId((long) i)
-                    .originAddress("")
+                    .originAddress("출발 주소 " + i)
                     .originX(centerX + randomA)
                     .originY(centerY + randomB)
-                    .destinationAddress("")
+                    .destinationAddress("도착 주소 " + i)
                     .destinationX(centerX + randomC)
                     .destinationY(centerY + randomD)
                     .timeOfDeparture(LocalDateTime.now()).build();
